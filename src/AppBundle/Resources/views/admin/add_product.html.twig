@@ -1,0 +1,44 @@
+{% extends '@App/layout.html.twig' %}
+
+{% set page = 'admin_add_product' %}
+
+{% block right_content %}  
+  <div class="row mb-5 mt-1">
+    <div class="col-12">
+      {% for label, messages in app.flashes %}
+        {% for message in messages %}
+          <div class="alert alert-{{ label }}" role="alert">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endfor %}      
+      {{ form_errors(form) }}
+      <form action="{{ url('admin_add_product') }}" method="POST">
+        <div class="form-group">
+          {{ form_label(form.type) }}
+          {{ form_widget(form.type) }}
+        </div>       
+        <div class="form-group">
+          {{ form_label(form.name) }}
+          {{ form_widget(form.name) }}
+        </div> 
+        <div class="form-group">
+          {{ form_label(form.description  ) }}
+          {{ form_widget(form.description) }}
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            {{ form_label(form.price  ) }}
+            {{ form_widget(form.price) }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form_label(form.currency) }}
+            {{ form_widget(form.currency) }}
+          </div>
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token("fast_sale_token") }}">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>  
+  </div>
+{%  endblock %}

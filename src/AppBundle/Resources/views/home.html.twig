@@ -1,0 +1,43 @@
+{% extends '@App/layout.html.twig' %}
+
+{% set page = 'home' %}
+
+{% block right_content %}
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <div class="navigation">
+          {{ knp_pagination_render(products) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mb-3">
+    {% for product in products%}
+      <div class="card col-4-md col-6-sm" style="width: 18rem;">
+        <div class="card-time text-center">
+          sale ends in <span style="color: red; font-size: 1.2rem;"><countdown v-bind:id="'countdown-{{product.getId()}}'"></countdown></span>
+        </div>
+        <div class="card-prom text-center">
+          only <span style="color: red; font-size: 2rem;">{{ product.getPrice() }}</span> PLN
+        </div>
+        <img class="card-img-top" style="width: 15rem; display:block; margin: auto; padding: 1rem;" src="{{ asset(product.getType.getPhotoFullPath()) }}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.getName() }}</h5>
+          <p class="card-text">{{ product.getDescription() }}</p>
+          <button disabled="" class="btn btn-info"><i class="fas fa-info-circle"></i> Details</button>
+          <shopping-cart-button v-bind:product-id="{{ product.getId() }}"></shopping-cart-button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div>
+        <div class="navigation">
+          {{ knp_pagination_render(products) }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

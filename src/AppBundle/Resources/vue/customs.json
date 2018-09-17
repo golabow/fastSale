@@ -1,0 +1,11 @@
+{
+  "elements": {},
+  "attributes": {
+    "v-if": {},
+    "v-on:click": {},
+    "v-on:click.prevent": {},
+    "v-bind:id": {
+      "context": "span"
+    }
+  }
+}
